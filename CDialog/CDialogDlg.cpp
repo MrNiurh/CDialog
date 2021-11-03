@@ -7,6 +7,8 @@
 #include "CDialog.h"
 #include "CDialogDlg.h"
 #include "afxdialogex.h"
+#include "CDlgExec.h"
+#include "CDlgShow.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,12 +22,12 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// 对话框数据
+	// 对话框数据
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 // 实现
@@ -65,6 +67,8 @@ BEGIN_MESSAGE_MAP(CCDialogDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON1, &CCDialogDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &CCDialogDlg::OnBnClickedButton2)
 END_MESSAGE_MAP()
 
 
@@ -100,6 +104,7 @@ BOOL CCDialogDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
+	dlg.Create(IDD_SHOW);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -153,3 +158,24 @@ HCURSOR CCDialogDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+// 模态对话框按钮的点击事件
+void CCDialogDlg::OnBnClickedButton1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	// 弹出模态对话框 阻塞
+	CDlgExec dlg;
+	dlg.DoModal();
+}
+
+
+void CCDialogDlg::OnBnClickedButton2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	// 弹出非模态对话框
+	// CDlgShow dlg;
+	// 创建
+	// dlg.Create(IDD_SHOW);// 创建窗口只能创建一次，多次就会崩溃
+	// 显示
+	dlg.ShowWindow(SW_SHOWNORMAL);
+}

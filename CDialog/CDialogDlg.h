@@ -3,12 +3,13 @@
 //
 
 #pragma once
+#include "CDlgShow.h"
 
 
 // CCDialogDlg 对话框
 class CCDialogDlg : public CDialogEx
 {
-// 构造
+	// 构造
 public:
 	CCDialogDlg(CWnd* pParent = nullptr);	// 标准构造函数
 
@@ -17,7 +18,7 @@ public:
 	enum { IDD = IDD_CDIALOG_DIALOG };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
 
 
@@ -31,4 +32,10 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton2();
+
+private:
+	CDlgShow dlg;
 };
