@@ -20,12 +20,12 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// 对话框数据
+	// 对话框数据
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 // 实现
@@ -52,6 +52,7 @@ END_MESSAGE_MAP()
 
 CEditCtrlDlg::CEditCtrlDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_EDITCTRL_DIALOG, pParent)
+	, m_text(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -61,6 +62,7 @@ void CEditCtrlDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDIT1, m_edit1);
 	DDX_Control(pDX, IDC_EDIT2, m_edit2);
+	DDX_Text(pDX, IDC_EDIT3, m_text);
 }
 
 BEGIN_MESSAGE_MAP(CEditCtrlDlg, CDialogEx)
@@ -69,6 +71,8 @@ BEGIN_MESSAGE_MAP(CEditCtrlDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON1, &CEditCtrlDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CEditCtrlDlg::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &CEditCtrlDlg::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &CEditCtrlDlg::OnBnClickedButton4)
 END_MESSAGE_MAP()
 
 
@@ -191,4 +195,28 @@ void CEditCtrlDlg::OnOK()
 	// TODO: 在此添加专用代码和/或调用基类
 
 	// CDialogEx::OnOK();
+}
+
+
+void CEditCtrlDlg::OnBnClickedButton3()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	// 利用关联 value 的方式，设置和改变 edit 的内容
+
+	// 设置内容
+	m_text = "文字显示";
+
+	// 将变量内容同步到控件中
+	UpdateData(FALSE);
+}
+
+
+void CEditCtrlDlg::OnBnClickedButton4()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	// 获取内容
+	// 将控件的内容同步到变量中
+
+	UpdateData(TRUE);
+	MessageBox(m_text);
 }

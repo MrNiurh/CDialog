@@ -37,4 +37,7 @@ public:
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
 	virtual void OnOK();
+	CString m_text;
+	afx_msg void OnBnClickedButton3();
+	afx_msg void OnBnClickedButton4();
 };
